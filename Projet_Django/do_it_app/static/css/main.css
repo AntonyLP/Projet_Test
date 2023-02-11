@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+html {
+    background: rgb(196,141,7);
+    background: linear-gradient(90deg, rgba(196,141,7,1) 5%,
+        rgba(153,110,6,1) 38%,
+        rgba(149,104,6,1) 57%,
+        rgba(137,94,4,1) 72%,
+        rgba(99,61,0,1) 93%,
+        rgba(92,56,0,1) 100%);
+    backdrop-filter: blur(2px);
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+
+    background: rgba(38,29,17,1);
+    background: linear-gradient(130deg, rgba(38,29,17,1) 0%,
+        rgba(41,34,22,1) 10%,
+        rgba(40,23,6,1) 30%,
+        rgba(41,34,22,1) 80%,
+        rgba(40,23,6,1) 100%);
+    backdrop-filter: blur(2px);
+
+    box-shadow: rgba(0, 0, 0, 0.25) 1px 54px 55px,
+            rgba(0, 0, 0, 0.12) 1px -12px 30px,
+            rgba(0, 0, 0, 0.12) 1px 4px 6px,
+            rgba(0, 0, 0, 0.17) 1px 12px 13px,
+            rgba(0, 0, 0, 0.09) 1px -3px 5px;
+
+    border: 2px solid #84602C;
+    border-radius: 10px;
+
+    width: 65%;
+    min-height: 35em;
+    margin: 2em auto auto auto;
+}
+
+main {
+    background-color: #292216;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+
+    margin: 0 3em 1.25em 3em;
+    padding: 1.5em;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.link-underline:hover {
+    text-decoration: underline;
+}
+
+header {
+    margin: 0.5em;
+}
+
+.header-user-connexion {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 1em;
+
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.25em;
+}
+
+.header-title, .header-date, .header-count-tasks {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.header-title {
+    font-family: 'Indie Flower', cursive;
+    font-size: 4em;
+
+    margin: 0.35em 0 0 0;
+}
+
+.header-date {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5em;
+
+    margin: 0;
+}
+
+.header-count-tasks {
+    font-size: 1.2em;
+
+    margin: 0 0 1.5em 0;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    gap: 0.5em;
+}
+
+.search-area--input {
+    width: 18em;
+    height: 2em;
+
+    border-radius: 10px;
+
+    background-color: #BBBBBB;
+}
+
+.search-area--btn {
+    width: 3em;
+    height: 2em;
+
+    display: none;
+}
+
+.btn_items {
+    margin: 1em;
+    padding: 1em;
+
+    border: none;
+    border-radius: 10px;
+
+    background: rgba(40,23,6,0.85);
+
+    display: flex;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn_items-task {
+    background-color: rgba(40,23,6,0.80);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn_items-tools {
+    display: flex;
+    align-items: center;
+
+    gap: 2em;
+}
+
+.btn_items-icon {
+    background-color: rgba(40,23,6,0.80);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn_items-icon:link, .btn_items-icon:visited, .btn_items-icon:hover, .btn_items-icon:active {
+    text-decoration: none;
+}
+
+.btn_img {
+    width: 20px;
+    height: 20px;
+}
+
+.task--add {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn_task--add {
+    padding: 0.75em;
+    border: 2px solid #C48D07;
+    border-radius: 15px;
+    background-color: #C48D07;
+}
+
+.btn_task--add:hover {
+    background-color: #C48D07;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+
+    padding: 0.25em;
+    margin: auto;
+    gap: 0.2em;
+}
+
+.step-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.5em;
+}
+
+.tags--items {
+    border-radius: 10px;
+    padding: 0.4em;
+    margin: 0;
+
+    font-weight: 600;
+}
+
+.red-tag {
+    background-color: darkred;
+}
+
+.green-tag {
+    background-color: darkgreen;
+}
+
+.orange-tag {
+    background-color: darkorange;
+}

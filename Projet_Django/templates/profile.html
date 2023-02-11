@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock head %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        <h1 class="header-title">Ton profil</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+
+    {% else %}
+        <div class="header-user-connexion">
+            <a class="link-underline" href="{% url 'login' %}">Connexion</a>
+        </div>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <form method="post" class="bloc-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn_task--profile" type="submit" value="Enregistrer">
+    </form>
+    <hr class="separator">
+    <section class="bloc-content-stats">
+        <h4>Tu as {{ task_count }} tâches liées à ton profil</h4>
+        <h4>👏ㆍTu as complété {{ completed_task_count }} tâchesㆍ👏</h4>
+        <h4>⌛ㆍIl t'en reste encore {{ incomplete_task_count }} à compléterㆍ⌛</h4>
+        <h3>✨ㆍCela te donne un ratio de {{ task_ratio }}ㆍ✨</h3>
+    </section>
+{% endblock content %}

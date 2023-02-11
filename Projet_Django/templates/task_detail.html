@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock head %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        {# pipe + title to capitalize first letter the word #}
+        <h1 class="header-title">{{ object }}</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+
+        {% if object.complete == False %}
+            <h4 class="header-task-state">😞 Tu n'as pas encore réalisé cette tâche ! 😞</h4>
+        {% else %}
+            <h4 class="header-task-state">🥳 Super, tu as terminé cette tâche ! 🥳</h4>
+        {% endif %}
+
+    {% else %}
+        <div class="header-user-connexion">
+            <a class="link-underline" href="{% url 'login' %}">Connexion</a>
+        </div>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <div class="detail-header-description">
+        <h2>Description de la tâche :</h2>
+        <a class="btn_items-icon" href="{% url 'task_update' task.id %}">
+            <img class="btn_img" src="{% static 'assets/img/pencil.png' %}" alt="Edit">
+        </a>
+    </div>
+    <p>{{ object.description }}</p>
+    <div class="detail-header-tags">
+        <h2>Tags : </h2>
+        {% if task.importance == 'high' %}
+            <p class="detail-header-tags--items red-item">Haute</p>
+        {% elif task.importance == 'medium' %}
+            <p class="detail-header-tags--items orange-item">Moyenne</p>
+        {% else %}
+            <p class="detail-header-tags--items green-item">Faible</p>
+        {% endif %}
+    </div>
+{% endblock content %}
+

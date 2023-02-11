@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Do-It</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        {% block head %}
+
+        {% endblock head %}
+    </head>
+    <body>
+        <header>
+            {% block header %}
+
+            {% endblock header %}
+        </header>
+        <main>
+            {% block content %}
+
+            {% endblock content %}
+
+            {% block subcontent %}
+
+            {% endblock subcontent %}
+        </main>
+    </body>
+
+    {% block script_JS %}
+
+    {% endblock script_JS %}
+</html>

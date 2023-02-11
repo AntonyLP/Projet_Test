@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock head %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        <h1 class="header-title">Création d'un compte</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+
+    {% else %}
+        <h1 class="header-title">Création d'un compte</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <form method="post" class="bloc-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn_task--login" type="submit" value="Créer le compte">
+    </form>
+    <div class="bloc-content-separator">
+        <hr>
+        <p>ou</p>
+        <hr>
+    </div>
+    <p class="bloc-content-register">Tu as un déjà compte ?
+        <a class="link-underline" href="{% url 'login' %}">Se connecter</a>
+    </p>
+{% endblock content %}

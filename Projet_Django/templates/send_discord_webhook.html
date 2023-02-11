@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        {# pipe + title to capitalize first letter the word #}
+        <h1 class="header-title">Envoi d'un Webhook sur Discord</h1>
+    {% else %}
+        <div class="header-user-connexion">
+            <a class="link-underline" href="{% url 'login' %}">Connexion</a>
+        </div>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <p>L'envoi du webhook se fait sur cette page</p>
+{% endblock content %}
+

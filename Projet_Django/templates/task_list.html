@@ -1,0 +1,130 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        <h1 class="header-title">{{ greeting }}, {{ request.user | title }} {{ emoji }}</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+{#        <p class="header-count-tasks">Tu as {{ count }} tâches incomplètes !</p>#}
+    {% else %}
+        <div class="header-user-connexion">
+            <a class="link-underline" href="{% url 'login' %}">Connexion</a>
+        </div>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <form method="get" class="search-area">
+        <label for="search-bar"></label>
+        <input id="search-bar" class="search-area--input" type="text"
+               name="search" value="{{ search_input }}" placeholder=" Rechercher...">
+    </form>
+
+    {% for task in tasks %}
+
+        <div class="btn_items">
+            <button
+                    class="btn_items-task" onclick='window.location.href="{% url 'task' task.id %}"'>
+                {% if task.complete %}
+                    <span>🟢</span>
+                {% else %}
+                    <span>🔴</span>
+                {% endif %}
+                {{ task.title }}
+            </button>
+
+            <div class="btn_items-tools">
+                {% if task.importance == 'high' %}
+                    <p class="tags--items red-tag">Haute</p>
+                {% elif task.importance == 'medium' %}
+                    <p class="tags--items orange-tag">Moyenne</p>
+                {% else %}
+                    <p class="tags--items green-tag">Faible</p>
+                {% endif %}
+                <a class="btn_items-icon" href="{% url 'task_update' task.id %}">
+                    <img class="btn_img" src="{% static 'assets/img/pencil.png' %}" alt="Edit">
+                </a>
+                <a class="btn_items-icon" href="{% url 'task_delete' task.id %}">
+                    <img class="btn_img" src="{% static 'assets/img/trash.png' %}" alt="Delete">
+                </a>
+{#                <button id="send-reminder" class="btn_items-icon" type="button">#}
+{#                    <img class="btn_img" src="{% static 'assets/img/send.png' %}" alt="Send_Webhook">#}
+{#                </button>#}
+{#                <button class="btn_items-icon" type="button" onclick="location.href='/send_discord_webhook/'">#}
+                <button class="btn_items-icon" type="button" onclick="location.href='{% url 'send_discord_webhook' task.id %}'">
+                    <img class="btn_img" src="{% static 'assets/img/send.png' %}" alt="Send_Webhook">
+                </button>
+            </div>
+        </div>
+
+    {% empty %}
+        <h3>Aucune tache</h3>
+    {% endfor %}
+
+    <section class="task--add">
+        <a class="btn_task--add" href="{% url 'task_create' %}">Créer une tache</a>
+    </section>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="link-underline" href="?page=1">&laquo; Début</a>
+                <a class="link-underline" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+            {% endif %}
+
+            <span class="current">
+                <h4>Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</h4>
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="link-underline" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+                <a class="link-underline" href="?page={{ page_obj.paginator.num_pages }}">Fin &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}
+
+{#{% block script_JS %}#}
+{#    <script>#}
+{#        document.getElementById('send-reminder').addEventListener('click', function() {#}
+{#            fetch('/send-reminder/', {#}
+{#                method: 'POST',#}
+{#                headers: {#}
+{#                    'Content-Type': 'application/json'#}
+{#                },#}
+{#                body: JSON.stringify({#}
+{#                    task_id: taskId#}
+{#                })#}
+{#            })#}
+{#            .then(function(response) {#}
+{#                return response.json();#}
+{#            })#}
+{#            .then(function(data) {#}
+{#                console.log("Rappel envoyé avec succès");#}
+{#            })#}
+{#            .catch(function(error) {#}
+{#                console.error("Erreur lors de l'envoi du rappel :", error);#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#{% endblock script_JS %}#}
+
+{% block script_JS %}
+{#    <script>#}
+{#        document.getElementById('send-reminder').addEventListener('click', function() {#}
+{#        const xhr = new XMLHttpRequest();#}
+{#        xhr.open('POST', 'send_discord_webhook/');#}
+{#        xhr.send();#}
+{#    });#}
+{#    </script>#}
+{% endblock script_JS %}
+

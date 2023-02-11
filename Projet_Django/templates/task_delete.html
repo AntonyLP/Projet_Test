@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
+{% endblock head %}
+
+{% block header %}
+
+    {% if request.user.is_authenticated %}
+        <div class="header-user-connexion">
+            <a class="btn_items-icon" href="{% url 'tasks' %}">
+                <img class="btn_img" src="{% static 'assets/img/home.png' %}" alt="Home">
+            </a>
+            <a class="link-underline" href="{% url 'profile' %}">Profil</a>
+            <a class="link-underline" href="{% url 'logout' %}">Déconnexion</a>
+        </div>
+        <h1 class="header-title">Suppression de la tâche</h1>
+        <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
+    {% else %}
+        <div class="header-user-connexion">
+            <a class="link-underline" href="{% url 'login' %}">Connexion</a>
+        </div>
+    {% endif %}
+
+{% endblock header %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="bloc-content">
+            <h3>Etes-vous vraiment sur de vouloir supprimer cette tâche ?</h3>
+            <p>➜ "{{ task }}"</p>
+            <p><i>Cette action est irréversible. Il ne sera pas possible de récupérer cette tâche après sa suppression</i></p>
+        </div>
+        <div class="bloc-btn">
+            <a class="btn_task--cancel link-underline" href="{% url 'tasks' %}">Non, non annuler !</a>
+            <input class="btn_task--delete" type="submit" value="Oui, supprimer">
+        </div>
+{#        <button type="submit">Supprimer</button>#}
+    </form>
+{% endblock content %}
+

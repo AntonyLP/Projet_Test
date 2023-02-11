@@ -1,0 +1,26 @@
+.bloc-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bloc-form p {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.btn_task--create {
+    margin-top: 1em;
+    padding: 0.85em;
+    border: 2px solid #C48D07;
+    border-radius: 15px;
+    color: white;
+    background-color: #292216;
+}
+
+.btn_task--create:hover {
+    background-color: #C48D07;
+    cursor: pointer;
+}
