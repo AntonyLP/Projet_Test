@@ -13,7 +13,6 @@
         </div>
         <h1 class="header-title">{{ greeting }}, {{ request.user | title }} {{ emoji }}</h1>
         <h3 class="header-date">Nous sommes le {{ dateNow | date:"d/m/Y" }}, il est {{ dateNow | date:"H:i" }}</h3>
-{#        <p class="header-count-tasks">Tu as {{ count }} tâches incomplètes !</p>#}
     {% else %}
         <div class="header-user-connexion">
             <a class="link-underline" href="{% url 'login' %}">Connexion</a>
@@ -56,10 +55,6 @@
                 <a class="btn_items-icon" href="{% url 'task_delete' task.id %}">
                     <img class="btn_img" src="{% static 'assets/img/trash.png' %}" alt="Delete">
                 </a>
-{#                <button id="send-reminder" class="btn_items-icon" type="button">#}
-{#                    <img class="btn_img" src="{% static 'assets/img/send.png' %}" alt="Send_Webhook">#}
-{#                </button>#}
-{#                <button class="btn_items-icon" type="button" onclick="location.href='/send_discord_webhook/'">#}
                 <button class="btn_items-icon" type="button" onclick="location.href='{% url 'send_discord_webhook' task.id %}'">
                     <img class="btn_img" src="{% static 'assets/img/send.png' %}" alt="Send_Webhook">
                 </button>
@@ -92,39 +87,3 @@
         </span>
     </div>
 {% endblock content %}
-
-{#{% block script_JS %}#}
-{#    <script>#}
-{#        document.getElementById('send-reminder').addEventListener('click', function() {#}
-{#            fetch('/send-reminder/', {#}
-{#                method: 'POST',#}
-{#                headers: {#}
-{#                    'Content-Type': 'application/json'#}
-{#                },#}
-{#                body: JSON.stringify({#}
-{#                    task_id: taskId#}
-{#                })#}
-{#            })#}
-{#            .then(function(response) {#}
-{#                return response.json();#}
-{#            })#}
-{#            .then(function(data) {#}
-{#                console.log("Rappel envoyé avec succès");#}
-{#            })#}
-{#            .catch(function(error) {#}
-{#                console.error("Erreur lors de l'envoi du rappel :", error);#}
-{#            });#}
-{#        });#}
-{#    </script>#}
-{#{% endblock script_JS %}#}
-
-{% block script_JS %}
-{#    <script>#}
-{#        document.getElementById('send-reminder').addEventListener('click', function() {#}
-{#        const xhr = new XMLHttpRequest();#}
-{#        xhr.open('POST', 'send_discord_webhook/');#}
-{#        xhr.send();#}
-{#    });#}
-{#    </script>#}
-{% endblock script_JS %}
-

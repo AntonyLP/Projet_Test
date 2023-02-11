@@ -17,7 +17,6 @@
 
 .btn_task--delete {
     padding: 0.85em;
-    /*border: 2px solid #C48D07;*/
     border: 2px solid darkred;
     border-radius: 15px;
     color: white;
@@ -25,7 +24,6 @@
 }
 
 .btn_task--delete:hover {
-    /*background-color: #C48D07;*/
     background-color: darkred;
     cursor: pointer;
 }

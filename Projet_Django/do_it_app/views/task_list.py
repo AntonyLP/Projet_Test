@@ -26,25 +26,8 @@ class TaskList(LoginRequiredMixin, ListView):
     context_object_name = 'tasks'
     paginate_by = 5
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['tasks'] = context['tasks'].filter(user=self.request.user)
-    #     context['count'] = context['tasks'].filter(complete=False).count()
-    #     context['greeting'] = choice(greetings)
-    #     context['emoji'] = choice(emojis)
-    #     context['dateNow'] = datetime.now()
-    #
-    #     search_input = self.request.GET.get('search') or ''
-    #     if search_input:
-    #         context['tasks'] = context['tasks'].filter(title__contains=search_input)
-    #
-    #     context['search_input'] = search_input
-    #
-    #     return context
-
     def get_queryset(self):
         tasks = super().get_queryset()
-        # sorting with order_by() on current User tasks to prevent from all Tasks display
         tasks = tasks.filter(user=self.request.user).order_by('-create')
         search_input = self.request.GET.get('search') or ''
         if search_input:
