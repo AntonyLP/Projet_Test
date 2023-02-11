@@ -41,7 +41,7 @@ python manage.py migrate
 
 5. Lancez le serveur de développement avec la commande :
 ```bash
-$ python manage.py runserver
+python manage.py runserver
 ```
 
 L'application sera alors disponible à l'adresse http://localhost:8000/ dans votre navigateur.
@@ -50,8 +50,10 @@ L'application sera alors disponible à l'adresse http://localhost:8000/ dans vot
 
 ### Webhook
 
-Pour l'envoi de webhook vers votre serveur Discord et donc cliquer sur le bouton d'envoi, il est important d'avoir créé et rempli son profil.
+Pour l'envoi de webhook vers votre serveur Discord et donc cliqué sur le bouton d'envoi, il est important d'avoir créé et remplit son profil.
 Il vous suffit de cliquer sur `Profil` et d'y renseigner les champs. 
+
+Vous reportez à l'explication de Discord pour la [création d'un webhook](https://support.discord.com/hc/fr/articles/228383668-Introduction-aux-Webhooks).
 
 ***
 
